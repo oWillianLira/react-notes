@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import NotesForm from './components/NotesForm';
+import NotesList from './components/NotesList';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    const App = styled.main`
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      min-height: 100vh;
+      .form {
+        border-right: solid 2px #ddd;
+      }
+    `;
+
+    return (
+      <App>
+        <div className="form">
+          <NotesForm />
+        </div>
+        <div className="listing">
+          <NotesList></NotesList>
+        </div>
+      </App>
+    );
+  }
 }
-
-export default App;
