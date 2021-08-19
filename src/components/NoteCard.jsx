@@ -21,10 +21,10 @@ export default class NoteCard extends Component {
     return (
       <CardNote>
         <CardHeader>
-          <h3>Title</h3>
+          <h3>{this.props.title}</h3>
         </CardHeader>
         <CardBody>
-          <p>anotação</p>
+          <p>{this.props.text}</p>
         </CardBody>
       </CardNote>
     );

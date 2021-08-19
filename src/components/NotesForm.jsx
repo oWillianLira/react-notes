@@ -2,6 +2,29 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 export default class NotesForm extends Component {
+  constructor(props) {
+    super(props);
+    this.title = '';
+    this.note = '';
+  }
+
+  // Functions
+  _handleTitle(e) {
+    this.title = e.target.value;
+    e.stopPropagation();
+  }
+
+  _handleNote(e) {
+    this.note = e.target.value;
+    e.stopPropagation();
+  }
+
+  _createNote(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.createNote(this.title, this.note);
+  }
+
   render() {
     const Form = styled.form`
       display: flex;
@@ -14,6 +37,7 @@ export default class NotesForm extends Component {
         border: solid #bbb 2px;
         border-radius: 3px;
         padding: 5px;
+        max-height: 170px;
         font-size: 1rem;
         transition: border ease-in 100ms;
         &:focus {
@@ -38,9 +62,14 @@ export default class NotesForm extends Component {
     `;
 
     return (
-      <Form action="">
-        <input type="text" placeholder="Title..." />
-        <textarea placeholder="Write your note here..." rows={8}></textarea>
+      <Form onSubmit={this._createNote.bind(this)}>
+        <input required type="text" placeholder="Title..." onChange={this._handleTitle.bind(this)} />
+        <textarea
+          required
+          placeholder="Write your note here..."
+          rows={8}
+          onChange={this._handleNote.bind(this)}
+        ></textarea>
         <button type="submit">Criar nota</button>
       </Form>
     );

@@ -10,7 +10,7 @@ export default class NotesList extends Component {
       flex-wrap: wrap;
       li {
         width: 100%;
-        max-width: 250px;
+        max-width: 225px;
         margin: 15px;
         padding: 15px;
         border-radius: 3px;
@@ -20,10 +20,10 @@ export default class NotesList extends Component {
 
     return (
       <List>
-        {Array.of('Work', 'Studies', 'Work').map((categ, index) => {
+        {this.props.notes.map((note, index) => {
           return (
             <li key={index}>
-              <NoteCard />
+              <NoteCard title={note.title} text={note.text} />
             </li>
           );
         })}
