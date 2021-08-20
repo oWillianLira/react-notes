@@ -33,17 +33,29 @@ export default class NoteCard extends Component {
       div {
         padding: 5px;
       }
+      span {
+        font-size: 0.75rem;
+        float: right;
+        margin-top: 15px;
+        color: #fff;
+        background-color: #55b;
+        padding: 3px 5px;
+        border-radius: 3px;
+      }
     `;
 
     return (
       <Card>
         <header>
           <h3>{this.props.title}</h3>
-          <label onClick={this.delete.bind(this)}>{Delete}</label>
+          <label title="Delete note" onClick={this.delete.bind(this)}>
+            {Delete}
+          </label>
         </header>
         <div>
           <p>{this.props.text}</p>
         </div>
+        <span title="Category">{this.props.categ}</span>
       </Card>
     );
   }

@@ -6,12 +6,18 @@ export default class NotesForm extends Component {
     super(props);
     this.title = '';
     this.note = '';
+    this.category = 'uncategorized';
   }
 
   // Functions
   _handleTitle(e) {
     this.title = e.target.value;
     e.stopPropagation();
+  }
+
+  _handleCateg(e) {
+    e.stopPropagation();
+    this.category = e.target.value;
   }
 
   _handleNote(e) {
@@ -22,7 +28,7 @@ export default class NotesForm extends Component {
   _createNote(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.createNote(this.title, this.note);
+    this.props.createNote(this.title, this.note, this.category);
   }
 
   render() {
@@ -65,7 +71,8 @@ export default class NotesForm extends Component {
     return (
       <Form onSubmit={this._createNote.bind(this)}>
         <input required type="text" placeholder="Title..." onChange={this._handleTitle.bind(this)} />
-        <select>
+        <select onChange={this._handleCateg.bind(this)}>
+          <option>uncategorized</option>
           {this.props.categList.map((categ) => {
             return <option value={categ}>{categ}</option>;
           })}

@@ -16,7 +16,6 @@ export default class CategList extends Component {
       align-items: flex-start;
       padding: 15px;
       input {
-        margin-bottom: 10px;
         background-color: #f5f5f5;
         border: solid #bbb 2px;
         border-radius: 3px;
@@ -38,7 +37,6 @@ export default class CategList extends Component {
           letter-spacing: 1px;
           color: #fff;
           font-size: 0.85rem;
-          text-transform: capitalize;
         }
       }
     `;
