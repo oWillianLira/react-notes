@@ -32,8 +32,10 @@ export default class NotesForm extends Component {
       width: 90%;
       margin: 15px auto;
       input,
+      select,
       textarea {
         margin-bottom: 10px;
+        background-color: #f5f5f5;
         border: solid #bbb 2px;
         border-radius: 3px;
         padding: 5px;
@@ -63,6 +65,11 @@ export default class NotesForm extends Component {
     return (
       <Form onSubmit={this._createNote.bind(this)}>
         <input required type="text" placeholder="Title..." onChange={this._handleTitle.bind(this)} />
+        <select>
+          {this.props.categList.map((categ) => {
+            return <option value={categ}>{categ}</option>;
+          })}
+        </select>
         <textarea
           required
           placeholder="Write your note here..."

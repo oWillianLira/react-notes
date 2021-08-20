@@ -2,12 +2,14 @@ import { Component } from 'react';
 import NotesForm from './components/NotesForm';
 import NotesList from './components/NotesList';
 import styled from 'styled-components';
+import CategList from './components/CategList';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       notes: [],
+      categories: [],
     };
   }
 
@@ -26,6 +28,12 @@ export default class App extends Component {
     arrayNotes.splice(index, 1);
     this.setState({ notes: arrayNotes });
     // }
+  }
+
+  createCateg(newCateg) {
+    const newCategList = [...this.state.categories, newCateg];
+    const newState = { ...this.state, categories: newCategList };
+    this.setState(newState);
   }
 
   render() {
@@ -54,9 +62,10 @@ export default class App extends Component {
     return (
       <App>
         <div className="form">
-          <NotesForm createNote={this.createNote.bind(this)} />
+          <NotesForm categList={this.state.categories} createNote={this.createNote.bind(this)} />
         </div>
         <div className="listing">
+          <CategList categories={this.state.categories} createCateg={this.createCateg.bind(this)} />
           <NotesList notes={this.state.notes} delete={this.deleteNote.bind(this)} />
         </div>
       </App>
