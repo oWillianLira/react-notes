@@ -20,6 +20,14 @@ export default class App extends Component {
     this.setState(newState);
   }
 
+  deleteNote(index) {
+    // if (window.confirm('Do you wanna delete this note?')) {
+    let arrayNotes = this.state.notes;
+    arrayNotes.splice(index, 1);
+    this.setState({ notes: arrayNotes });
+    // }
+  }
+
   render() {
     const App = styled.main`
       display: grid;
@@ -49,7 +57,7 @@ export default class App extends Component {
           <NotesForm createNote={this.createNote.bind(this)} />
         </div>
         <div className="listing">
-          <NotesList notes={this.state.notes} />
+          <NotesList notes={this.state.notes} delete={this.deleteNote.bind(this)} />
         </div>
       </App>
     );

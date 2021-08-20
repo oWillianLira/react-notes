@@ -55,7 +55,6 @@ export default class NotesForm extends Component {
         transition: ease-in 200ms;
         border: none;
         &:hover {
-          letter-spacing: 1px;
           background: #448;
         }
       }
