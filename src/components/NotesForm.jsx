@@ -7,6 +7,15 @@ export default class NotesForm extends Component {
     this.title = '';
     this.note = '';
     this.category = 'uncategorized';
+    this.state = { categories: [] };
+  }
+
+  componentDidMount() {
+    this.props.categList.linking(this._newCategs.bind(this));
+  }
+
+  _newCategs(categories) {
+    this.setState({ ...this.state, categories });
   }
 
   // Functions
@@ -72,9 +81,13 @@ export default class NotesForm extends Component {
       <Form onSubmit={this._createNote.bind(this)}>
         <input required type="text" placeholder="Title..." onChange={this._handleTitle.bind(this)} />
         <select onChange={this._handleCateg.bind(this)}>
-          <option>uncategorized</option>
-          {this.props.categList.map((categ) => {
-            return <option value={categ}>{categ}</option>;
+          <option value="uncategorized">uncategorized</option>
+          {this.state.categories.map((categ, i) => {
+            return (
+              <option key={i} value={categ}>
+                {categ}
+              </option>
+            );
           })}
         </select>
         <textarea

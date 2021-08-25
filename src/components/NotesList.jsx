@@ -3,6 +3,19 @@ import NoteCard from './NoteCard';
 import styled from 'styled-components';
 
 export default class NotesList extends Component {
+  constructor() {
+    super();
+    this.state = { notes: [] };
+  }
+
+  componentDidMount() {
+    this.props.notes.linking(this._newNotes.bind(this));
+  }
+
+  _newNotes(notes) {
+    this.setState({ ...this.state, notes });
+  }
+
   render() {
     const List = styled.ul`
       width: 100%;
@@ -20,7 +33,7 @@ export default class NotesList extends Component {
 
     return (
       <List>
-        {this.props.notes.map((note, index) => {
+        {this.state.notes.map((note, index) => {
           return (
             <li key={index}>
               <NoteCard

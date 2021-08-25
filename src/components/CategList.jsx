@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 export default class CategList extends Component {
+  constructor() {
+    super();
+    this.state = { categories: [] };
+  }
+
+  componentDidMount() {
+    this.props.categories.linking(this._newCateg.bind(this));
+  }
+
+  _newCateg(categories) {
+    this.setState({ ...this.state, categories });
+  }
+
   _handleInput(e) {
     if (e.key === 'Enter' && e.target.value) {
       let newCateg = e.target.value;
@@ -44,7 +57,7 @@ export default class CategList extends Component {
     return (
       <CategArea>
         <ul>
-          {this.props.categories.map((categ, i) => {
+          {this.state.categories.map((categ, i) => {
             return <li key={i}>{categ}</li>;
           })}
         </ul>

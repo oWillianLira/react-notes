@@ -4,36 +4,14 @@ import NotesList from './components/NotesList';
 import styled from 'styled-components';
 import CategList from './components/CategList';
 
+import Notes from './data/Notes';
+import Categories from './data/Categories';
+
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-      notes: [],
-      categories: [],
-    };
-  }
-
-  createNote(title, text, category) {
-    const newNote = { title, text, category };
-    const newNotesList = [...this.state.notes, newNote];
-    const newState = {
-      notes: newNotesList,
-    };
-    this.setState(newState);
-  }
-
-  deleteNote(index) {
-    // if (window.confirm('Do you wanna delete this note?')) {
-    let arrayNotes = this.state.notes;
-    arrayNotes.splice(index, 1);
-    this.setState({ notes: arrayNotes });
-    // }
-  }
-
-  createCateg(newCateg) {
-    const newCategList = [...this.state.categories, newCateg];
-    const newState = { ...this.state, categories: newCategList };
-    this.setState(newState);
+    this.categories = new Categories();
+    this.notes = new Notes();
   }
 
   render() {
@@ -62,11 +40,11 @@ export default class App extends Component {
     return (
       <App>
         <div className="form">
-          <NotesForm categList={this.state.categories} createNote={this.createNote.bind(this)} />
+          <NotesForm categList={this.categories} createNote={this.notes.addNote.bind(this.notes)} />
         </div>
         <div className="listing">
-          <CategList categories={this.state.categories} createCateg={this.createCateg.bind(this)} />
-          <NotesList notes={this.state.notes} delete={this.deleteNote.bind(this)} />
+          <CategList categories={this.categories} createCateg={this.categories.createCateg.bind(this.categories)} />
+          <NotesList notes={this.notes} delete={this.notes.delNotes.bind(this.notes)} />
         </div>
       </App>
     );
