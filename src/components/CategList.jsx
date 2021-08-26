@@ -5,13 +5,18 @@ export default class CategList extends Component {
   constructor() {
     super();
     this.state = { categories: [] };
+    this.ref = this._newCategs.bind(this);
   }
 
   componentDidMount() {
-    this.props.categories.linking(this._newCateg.bind(this));
+    this.props.categories.linking(this.ref);
   }
 
-  _newCateg(categories) {
+  componentWillUnmount() {
+    this.props.categories.unlinking(this.ref);
+  }
+
+  _newCategs(categories) {
     this.setState({ ...this.state, categories });
   }
 

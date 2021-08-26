@@ -6,10 +6,15 @@ export default class NotesList extends Component {
   constructor() {
     super();
     this.state = { notes: [] };
+    this.ref = this._newNotes.bind(this);
   }
 
   componentDidMount() {
-    this.props.notes.linking(this._newNotes.bind(this));
+    this.props.notes.linking(this.ref);
+  }
+
+  componentWillUnmount() {
+    this.props.notes.unlinking(this.ref);
   }
 
   _newNotes(notes) {

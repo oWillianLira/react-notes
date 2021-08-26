@@ -40,7 +40,7 @@ export default class App extends Component {
     return (
       <App>
         <div className="form">
-          <NotesForm categList={this.categories} createNote={this.notes.addNote.bind(this.notes)} />
+          <NotesForm categories={this.categories} createNote={this.notes.addNote.bind(this.notes)} />
         </div>
         <div className="listing">
           <CategList categories={this.categories} createCateg={this.categories.createCateg.bind(this.categories)} />

@@ -8,6 +8,10 @@ export default class Categories {
     this._linked.push(func);
   }
 
+  unlinking(func) {
+    this._linked = this._linked.filter((f) => f !== func);
+  }
+
   notify() {
     this._linked.forEach((func) => func(this.categories));
   }

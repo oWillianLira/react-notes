@@ -8,10 +8,15 @@ export default class NotesForm extends Component {
     this.note = '';
     this.category = 'uncategorized';
     this.state = { categories: [] };
+    this.ref = this._newCategs.bind(this);
   }
 
   componentDidMount() {
-    this.props.categList.linking(this._newCategs.bind(this));
+    this.props.categories.linking(this.ref);
+  }
+
+  componentWillUnmount() {
+    this.props.categories.unlinking(this.ref);
   }
 
   _newCategs(categories) {
